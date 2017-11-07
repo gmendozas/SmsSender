@@ -20,11 +20,8 @@ namespace SmsSender.Controllers
             return View(unidades);
         }
 
-        [HttpPost]
-        public ActionResult SubmitSelected(List<Unidad> model)
-        {
-            var selectedIds = model.Where(m => m.EsSeleccionado);
-
+        public ActionResult SubmitSelected(string telefono)
+        {            
             return RedirectToAction("Index");
         }
 

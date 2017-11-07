@@ -7,50 +7,43 @@
 <p>
     <h1>UNIDADES</h1>
 </p>
-@using (Html.BeginForm("SubmitSelected", "Home", FormMethod.Post, new { encType = "multipart/form-data", name = "myform" }))
-{
-    <div>
-        <input type="submit" value="Enviar SMS" />
-        <br /><br />
-    </div>
-    <table class="table">
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroSerie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NumeroSerie)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Empresa)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Marca)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Telefono)
-            </th>
-            <th></th>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroSerie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.ActionLink("Seleccionar", "SubmitSelected", new { telefono = item.Telefono })
+            </td>
         </tr>
+    }
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NumeroSerie)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Empresa)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Marca)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Telefono)
-                </td>
-                <td>
-                    @Html.CheckBoxFor(modelItem => item.EsSeleccionado)
-                </td>
-            </tr>
-        }
-
-    </table>
-    @Html.EditorFor(model => model)
-}
+</table>
+@Html.EditorFor(model => model)
